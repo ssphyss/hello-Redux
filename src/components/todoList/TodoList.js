@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem';
+import store from './../../store';
 
 class TodoList extends Component {
 	constructor(props) {
-		super(props);
-		this.state = {
-			inputValue: '',
-			list: []
-		}
+		super(props);		
+		this.state = store.getState();
+		// this.state = {
+		// 	inputValue: '',
+		// 	list: []
+		// }
 		this.handleInputChange = this.handleInputChange.bind(this)
 		this.handleBtnClick = this.handleBtnClick.bind(this)
 	}
  	render() {
+		console.log(this.state)
 		return (
 			<div>
 				<div>
@@ -32,6 +35,7 @@ class TodoList extends Component {
 	}
   	getTodoItem(){
 		return this.state.list.map((item, index) => {
+			console.log('item',item)
 			return (
 				// 父組件傳遞屬性跟方法給子組件	
 				<TodoItem
@@ -59,6 +63,14 @@ class TodoList extends Component {
 			inputValue: ''
 		}))
 	}
+	// 刪除
+	// handleItemDelete(index){		
+	// 	this.setState((prevState) => {
+	// 		const list = [...prevState.list];
+	// 		list.splice(index, 1);
+	// 		return {list}
+	// 	})
+	// }
 }
 
 export default TodoList;
