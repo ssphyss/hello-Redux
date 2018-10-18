@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import store from './../../store';
 import { Button, Input, List } from 'antd';
-import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM } from './../../store/actionTypes';
+// import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM } from './../../store/actionTypes';
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './../../store/actionCreator';
+
 import 'antd/dist/antd.css';
 
 // const data = [
@@ -43,40 +45,45 @@ class TodoListAntd extends Component {
 		);
 	}
 
+	// handleInputChange(e){
+	// 	const action = {
+			// type: CHANGE_INPUT_VALUE,
+	// 		value: e.target.value
+	// 	}
+	// 	store.dispatch(action);
+	// }
+
 	handleInputChange(e){
-		// console.log(e.target)
-		// console.log(e.target.value)
-		const action = {
-			// type: 'change_Input_Value',
-			type: CHANGE_INPUT_VALUE,
-			value: e.target.value
-		}
+		const action = getInputChangeAction(e.target.value);
 		store.dispatch(action);
-		// this.setState(() => {
-		// 	this.state.inputValue = this.state.inputValue
-		// })
 	}
 
 	handleStoreChange(){
-		// console.log('store.change')
 		this.setState(store.getState());
 	}
 
+	// handleBtnClick(){
+	// 	const action = {
+	// 		type: ADD_TODO_ITEM,
+	// 	}
+	// 	store.dispatch(action);
+	// }
 	handleBtnClick(){
-		const action = {
-			// type: 'add_todo_item',
-			type: ADD_TODO_ITEM,
-		}
+		const action = getAddItemAction();
 		store.dispatch(action);
 	}
 
+	// handleItemDelete(index){
+	// 	// alert(index)
+	// 	const action = {
+	// 		// type: 'delete_todo_item',
+	// 		type: DELETE_TODO_ITEM,
+	// 		index
+	// 	}
+	// 	store.dispatch(action);
+	// }
 	handleItemDelete(index){
-		// alert(index)
-		const action = {
-			// type: 'delete_todo_item',
-			type: DELETE_TODO_ITEM,
-			index
-		}
+		const action = getDeleteItemAction(index);
 		store.dispatch(action);
 	}
 }
