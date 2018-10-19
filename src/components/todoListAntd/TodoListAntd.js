@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import store from './../../store';
-// import { Button, Input, List } from 'antd';
-// import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM } from './../../store/actionTypes';
-import { /*initListAction,*/ getInputChangeAction, getAddItemAction, getDeleteItemAction } from './../../store/actionCreator';
-import { getTodoList } from './../../store/actionCreator';
 import TodoListAntdUI from './TodoListAntdUI';
-// import 'antd/dist/antd.css';
-// import axios from 'axios';
+
+// 使用中間件的話,{initListAction}可以註解，axios引入也可以註解
+import { initListAction, getInputChangeAction, getAddItemAction, getDeleteItemAction } from './../../store/actionCreator';
+import axios from 'axios';
+
+// 使用中間件Redux-thunk
+import { getTodoList } from './../../store/actionCreatorMiddle';
 
 class TodoListAntd extends Component {
 	constructor(props){
@@ -33,10 +34,12 @@ class TodoListAntd extends Component {
 		);
 	}	
 	componentDidMount(){
+		// =======以下引入中間件Redux-thunk,把函數執行拿到action======
 		const action = getTodoList();
 		store.dispatch(action);
 		console.log('action：', action);
-		// =======以下因為引入中間件,把函數執行拿到action======
+
+		// =======以下未使用中間件======
 		// console.log('=====生命週期 (掛載後) componentDidMount=====')
 		// axios.get('https://easy-mock.com/mock/5bc846bd4ff7d608864c06b0/jianshuApi/todolistAntd')
 		// .then((res)=>{
