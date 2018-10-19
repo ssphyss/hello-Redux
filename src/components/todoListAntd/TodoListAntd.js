@@ -7,7 +7,7 @@ import { initListAction, getInputChangeAction, getAddItemAction, getDeleteItemAc
 import axios from 'axios';
 
 // 使用中間件Redux-thunk
-import { getTodoList } from './../../store/actionCreatorMiddle';
+// import { getTodoList } from './../../store/actionCreatorMiddle';
 
 class TodoListAntd extends Component {
 	constructor(props){
@@ -35,24 +35,24 @@ class TodoListAntd extends Component {
 	}	
 	componentDidMount(){
 		// =======以下引入中間件Redux-thunk,把函數執行拿到action======
-		const action = getTodoList();
-		store.dispatch(action);
-		console.log('action：', action);
+		// const action = getTodoList();
+		// store.dispatch(action);
+		// console.log('action：', action);
 
 		// =======以下未使用中間件======
-		// console.log('=====生命週期 (掛載後) componentDidMount=====')
-		// axios.get('https://easy-mock.com/mock/5bc846bd4ff7d608864c06b0/jianshuApi/todolistAntd')
-		// .then((res)=>{
-		// 	console.log('Ajax輸出：',res.data);
-		// 	// this.setState(() => ({
-		// 	// 	list: [...res.data.data]
-		// 	// }))
-		// 	const data = res.data;
-		// 	const action = initListAction(data);
-		// 	// console.log('action：',action);
-		// 	store.dispatch(action);
-		// })
-		// .catch(()=>{alert('err')})
+		console.log('=====生命週期 (掛載後) componentDidMount=====')
+		axios.get('https://easy-mock.com/mock/5bc846bd4ff7d608864c06b0/jianshuApi/todolistAntd')
+		.then((res)=>{
+			console.log('Ajax輸出：',res.data);
+			// this.setState(() => ({
+			// 	list: [...res.data.data]
+			// }))
+			const data = res.data;
+			const action = initListAction(data);
+			// console.log('action：',action);
+			store.dispatch(action);
+		})
+		.catch(()=>{alert('err')})
 	}	
 
 	handleInputChange(e){
