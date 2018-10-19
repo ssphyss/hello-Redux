@@ -4,7 +4,7 @@ import store from './../../store';
 // import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DELETE_TODO_ITEM } from './../../store/actionTypes';
 import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from './../../store/actionCreator';
 import TodoListAntdUI from './TodoListAntdUI';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 
 class TodoListAntd extends Component {
 	constructor(props){
